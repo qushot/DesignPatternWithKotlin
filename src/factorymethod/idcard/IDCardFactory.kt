@@ -4,17 +4,14 @@ import factorymethod.framework.Factory
 import factorymethod.framework.Product
 
 class IDCardFactory: Factory() {
-    private val owners = mutableListOf<String>()
+    private val _owners = mutableListOf<String>()
+    val owners: List<String> = _owners
 
     override fun createProduct(owner: String): Product {
         return IDCard(owner)
     }
 
     override fun registerProduct(product: Product) {
-        owners.add((product as IDCard).getOwner())
-    }
-
-    fun getOwners(): List<String> {
-        return owners
+        _owners.add((product as IDCard).owner)
     }
 }
